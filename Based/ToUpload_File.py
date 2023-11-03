@@ -25,7 +25,8 @@ Myjson = config_data["json"]
 
 class UpFile:
     def __init__(self, command_id: int, way: str, path: str):
-        is_Uplaoded = False
+        self.command_id = command_id
+        self.is_Uplaoded = False
         if way == "FilePath":
             self.__body = {
                 "CgiCmd": "PicUp.DataUp",
@@ -65,26 +66,34 @@ class UpFile:
         }
 
         response = requests.post(url, headers=headers, data=payload)
-        if response.json()["CgiBaseResponse"]["Ret"] == 0 and self.is_Uplaoded == False:
-            print("上传成功")
-        else:
-            print("上传失败")
+        # if response.json()["CgiBaseResponse"]["Ret"] == 0 and self.is_Uplaoded == False:
+        #     print("上传成功")
+        # else:
+        #     print("上传失败")
         # print(response.text)
         if self.is_Uplaoded == False:
             self.is_Uplaoded = True
         return response.json()
 
     def get_file_md5(self) -> str:
-        return self.get_info()["ResponseData"]["FileMd5"]
+        if self.get_info()["ResponseData"]["FileMd5"]:
+            return self.get_info()["ResponseData"]["FileMd5"]
+        return -1
 
     def get_file_id(self) -> int:
-        return self.get_info()["ResponseData"]["FileId"]
+        if self.command_id == 1 or self.command_id == 2:
+            return self.get_info()["ResponseData"]["FileId"]
+        return -1
 
     def get_file_size(self) -> int:
-        return self.get_info()["ResponseData"]["FileSize"]
+        if self.get_info()["ResponseData"]["FileSize"]:
+            return self.get_info()["ResponseData"]["FileSize"]
+        return -1
 
-    # def get_file_token(self) -> str:
-    #     return self.get_info()["ResponseData"]["FileToken"]
+    def get_file_token(self) -> str:
+        if self.command_id == 26 or self.command_id == 29:
+            return self.get_info()["ResponseData"]["FileToken"]
+        return -1
 
 
 # file = UpFile(
