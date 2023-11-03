@@ -1,13 +1,13 @@
 import requests
 import json
 
-Host = "127.0.0.1:8086"
-QQBotUid = "157362358"
-devicename = "李三喵🐱"
-json_payload = "1"  # Rename the variable
+# 获取状态
 
 
-def get_Status():  # Corrected the function name
+def get_Status(my_config):  # Corrected the function name
+    Host = my_config["Host"]
+    QQBotUid = my_config["QQBotUid"]
+    # devicename = my_config["devicename"]
     url = f"http://{Host}/v1/LuaApiCaller?funcname=MagicCgiCmd&timeout=10&qq={QQBotUid}"
 
     payload = json.dumps({"CgiCmd": "ClusterInfo", "CgiRequest": {}})

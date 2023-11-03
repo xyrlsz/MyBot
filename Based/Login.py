@@ -4,16 +4,13 @@ from PIL import Image
 from io import BytesIO
 from Based.QR_Cout import print_QR
 import requests
-import json
 
 
-Host = "127.0.0.1:8086"
-QQBotUid = "1457362358"
-devicename = "李三喵🐱"
-json = "1"
-
-
-def login_QQ():
+def login_QQ(get_config):
+    Host = get_config["Host"]
+    QQBotUid = get_config["QQBotUid"]
+    devicename = get_config["devicename"]
+    json = get_config["json"]
     login_url = "http://{}/v1/login/getqrcode?qq={}&devicename={}&json={}".format(
         Host, QQBotUid, devicename, json
     )

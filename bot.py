@@ -6,18 +6,13 @@ import requests
 import json
 from Based.Stauts import get_Status
 from Based.Login import login_QQ
+from Based.Config import get_config
 
-Host = "127.0.0.1:8086"
-QQBotUid = "1457362358"
-devicename = "李三喵🐱"
-json = "1"
+config = "Config/config.yaml"
+get_config = get_config(config)
 
-login_url = "http://{}/v1/login/getqrcode?qq={}&devicename={}&json={}".format(
-    Host, QQBotUid, devicename, json
-)
-
-if get_Status():
+if get_Status(get_config):
     print("已登录")
 else:
     print("未登录")
-    login_QQ()
+    login_QQ(get_config)
