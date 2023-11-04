@@ -22,24 +22,36 @@ else:
     print("未登录")
     login_QQ(get_config)
 
-message = TextMessage(2434221948, 1, "失败")
-# img_file = UpFile(
-#     1,
-#     "FilePath",
-#     "./QR.png",
-# )
-# img_message = ImageMessage(2434221948, 1, img_file.get_file_md5())
 
-voice_file = UpFile(26, "FilePath", "ambient-piano-logo-165357.mp3")
+new_dict_array = [
+    {"Nick": "XYR⊙LSZ ", "Uin": 2434221948},
+]
+
+message = TextMessage(797649367, 2, "shabi", new_dict_array)
+
+img_file = UpFile(2, "FilePath", "QR.png")
+img_message = ImageMessage(
+    797649367,
+    2,
+    img_file.get_file_md5(),
+    img_file.get_file_id(),
+    img_file.get_height(),
+    img_file.get_width(),
+)
+
+img = ImageMessage(2434221948, 1, img_file.get_file_md5())
+print(img.get_body())
+print(img_file.get_file_md5())
+voice_file = UpFile(29, "FilePath", "ambient-piano-logo-165357.mp3")
 
 voice_message = VoiceMessage(
-    2434221948,
-    1,
+    797649367,
+    2,
     voice_file.get_file_md5(),
     voice_file.get_file_size(),
     voice_file.get_file_token(),
 )
-print(voice_file.get_file_md5())
-print(voice_file.get_file_size())
-print(voice_file.get_file_token())
+# print(voice_file.get_file_md5())
+# print(voice_file.get_file_size())
+# print(voice_file.get_file_token())
 send_message(voice_message)

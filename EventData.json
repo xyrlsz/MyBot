@@ -1,0 +1,89 @@
+{
+    "CurrentPacket": {
+        "EventData": {
+            "MsgHead": {
+                "FromUin": 797649367,
+                "FromUid": "",
+                "ToUin": 1457362358,
+                "ToUid": "",
+                "FromType": 2,
+                "SenderUin": 2434221948,
+                "SenderUid": "u_3zHJHb6z2icyEPXL4PiThw",
+                "SenderNick": "XYR⊙LSZ",
+                "MsgType": 82,
+                "C2cCmd": 0,
+                "MsgSeq": 10776,
+                "MsgTime": 1699112862,
+                "MsgRandom": 255559249,
+                "MsgUid": 72057594293487185,
+                "GroupInfo": {
+                    "GroupCard": "XYR⊙LSZ",
+                    "GroupCode": 797649367,
+                    "GroupInfoSeq": 190,
+                    "GroupLevel": 1,
+                    "GroupRank": 2,
+                    "GroupType": 1,
+                    "GroupName": "文件转存"
+                },
+                "C2CTempMessageHead": null
+            },
+            "MsgBody": {
+                "SubMsgType": 0,
+                "Content": "好好好",
+                "AtUinLists": null,
+                "Images": null,
+                "Video": null,
+                "Voice": null,
+                "RedBag": null
+            },
+            "Event": null
+        },
+        "EventName": "ON_EVENT_GROUP_NEW_MSG"
+    },
+    "CurrentQQ": 1457362358
+}
+
+{
+    "CurrentPacket": {
+        "EventData": {
+            "MsgHead": {
+                "FromUin": 2434221948,
+                "FromUid": "u_3zHJHb6z2icyEPXL4PiThw",
+                "ToUin": 1457362358,
+                "ToUid": "u_MxAjkqh2r4fhsmYHJJBWdw",
+                "FromType": 1,
+                "SenderUin": 2434221948,
+                "SenderUid": "u_3zHJHb6z2icyEPXL4PiThw",
+                "SenderNick": "",
+                "MsgType": 166,
+                "C2cCmd": 11,
+                "MsgSeq": 54757,
+                "MsgTime": 1699113173,
+                "MsgRandom": 125251621,
+                "MsgUid": 72057594163179557,
+                "GroupInfo": null,
+                "C2CTempMessageHead": null
+            },
+            "MsgBody": {
+                "SubMsgType": 0,
+                "Content": "",
+                "AtUinLists": null,
+                "Images": [
+                    {
+                        "FileMd5": "ZMj7Nx8q9PojeVGcYETM3g==",
+                        "FileSize": 0,
+                        "Height": 620,
+                        "Url": "http://c2cpicdw.qpic.cn/offpic_new/2434221948//2434221948-263687837-64C8FB371F2AF4FA2379519C6044CCDE/0?term=255&is_origin=0",
+                        "Width": 1003
+                    }
+                ],
+                "Video": null,
+                "Voice": null,
+                "RedBag": null
+            },
+            "Event": null
+        },
+        "EventName": "ON_EVENT_FRIEND_NEW_MSG",
+        "CurrentQQ": 1457362358
+    }
+}

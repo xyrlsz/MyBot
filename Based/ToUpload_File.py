@@ -14,6 +14,10 @@ path 是文件路径或者文件网络路径或者Base64Buf编码
 import requests
 import json
 from Based.Config import get_config
+from PIL import Image
+import requests
+from io import BytesIO
+import base64
 
 config = "Config/config.yaml"
 config_data = get_config(config)  # Renamed the variable to avoid conflict
@@ -27,7 +31,7 @@ class UpFile:
     def __init__(self, command_id: int, way: str, path: str):
         self.__command_id = command_id
         # self.__is_Uplaoded = False
-
+        self.__height, self.__width = 0, 0
         if way == "FilePath":
             self.__body = {
                 "CgiCmd": "PicUp.DataUp",
@@ -36,6 +40,8 @@ class UpFile:
                     "FilePath": path,
                 },
             }
+            if self.__command_id == 1 or self.__command_id == 2:
+                self.__height, self.__width = Image.open(path).size
         elif way == "FileUrl":
             self.__body = {
                 "CgiCmd": "PicUp.DataUp",
@@ -44,6 +50,13 @@ class UpFile:
                     "FileUrl": path,
                 },
             }
+            if self.__command_id == 1 or self.__command_id == 2:
+                response = requests.get(path)
+
+                if response.status_code == 200:
+                    image_data = BytesIO(response.content)
+                    img = Image.open(image_data)
+                self.__height, self.__width = img.size
         elif way == "FileBase64":
             self.__body = {
                 "CgiCmd": "PicUp.DataUp",
@@ -52,6 +65,9 @@ class UpFile:
                     "Base64Buf": path,
                 },
             }
+            bqbinary = base64.b64decode(path)
+            bqimage = Image.open(BytesIO(bqbinary))
+            self.__height, self.__width = bqimage.size
         self.__info = self.get_info()
 
     def get_body(self) -> dict:
@@ -96,6 +112,12 @@ class UpFile:
         if self.__command_id == 26 or self.__command_id == 29:
             return self.__info["ResponseData"]["FileToken"]
         return ""
+
+    def get_height(self) -> int:
+        return self.__height
+
+    def get_width(self) -> int:
+        return self.__width
 
 
 # file = UpFile(
