@@ -24,8 +24,8 @@ else:
 message = TextMessage(2434221948, 1, "失败")
 img_file = UpFile(
     1,
-    "FileUrl",
-    "https://pic3.zhimg.com/v2-11e37bfc3b150e7ad3bffeb6fb6bf203_r.jpg?source=1940ef5c",
+    "FilePath",
+    "./QR.png",
 )
 img_message = ImageMessage(2434221948, 1, img_file.get_file_md5())
 send_message(img_message)
