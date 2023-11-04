@@ -1,5 +1,6 @@
 requests
 asyncio
 Pillow
-json
-
+pyjson
+pyyaml
+websockets
