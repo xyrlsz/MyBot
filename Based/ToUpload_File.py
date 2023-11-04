@@ -27,8 +27,7 @@ class UpFile:
     def __init__(self, command_id: int, way: str, path: str):
         self.__command_id = command_id
         # self.__is_Uplaoded = False
-        
-        
+
         if way == "FilePath":
             self.__body = {
                 "CgiCmd": "PicUp.DataUp",

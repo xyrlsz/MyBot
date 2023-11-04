@@ -50,24 +50,20 @@ class ImageMessage:
 
 class VoiceMessage:
     def __init__(
-        self, receiver: int, type: int, file_md5: str, file_size=None, file_token=None
+        self, receiver: int, type: int, file_md5: str, file_size: int, file_token: str
     ):
         self.__body = {
             "CgiCmd": "MessageSvc.PbSendMsg",
             "CgiRequest": {
-                "ToUin": receiver,  # 替换成实际的接收者
-                "ToType": type,  # 2 表示群组；3 表示私聊
-                "Voice": [
-                    {
-                        "FileMd5": file_md5,
-                    }
-                ],
+                "ToUin": receiver,
+                "ToType": type,
+                "Voice": {
+                    "FileMd5": file_md5,
+                    "FileSize": file_size,
+                    "FileToken": file_token,
+                },
             },
         }
-        if file_size is not None:
-            self.__body["CgiRequest"]["Voice"][0]["FileSize"] = file_size
-        if file_token is not None:
-            self.__body["CgiRequest"]["Voice"][0]["FileToken"] = file_token
 
     def get_body(self):
         return self.__body
