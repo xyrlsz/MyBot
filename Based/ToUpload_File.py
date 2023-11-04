@@ -25,8 +25,10 @@ Myjson = config_data["json"]
 
 class UpFile:
     def __init__(self, command_id: int, way: str, path: str):
-        self.command_id = command_id
-        self.is_Uplaoded = False
+        self.__command_id = command_id
+        # self.__is_Uplaoded = False
+        
+        
         if way == "FilePath":
             self.__body = {
                 "CgiCmd": "PicUp.DataUp",
@@ -51,6 +53,7 @@ class UpFile:
                     "Base64Buf": path,
                 },
             }
+        self.__info = self.get_info()
 
     def get_body(self) -> dict:
         return self.__body
@@ -71,29 +74,29 @@ class UpFile:
         # else:
         #     print("上传失败")
         # print(response.text)
-        if self.is_Uplaoded == False:
-            self.is_Uplaoded = True
+        # if self.__is_Uplaoded == False:
+        #     self.__is_Uplaoded = True
         return response.json()
 
     def get_file_md5(self) -> str:
-        if self.get_info()["ResponseData"]["FileMd5"]:
-            return self.get_info()["ResponseData"]["FileMd5"]
-        return -1
+        if self.__info["ResponseData"]["FileMd5"]:
+            return self.__info["ResponseData"]["FileMd5"]
+        return ""
 
     def get_file_id(self) -> int:
-        if self.command_id == 1 or self.command_id == 2:
-            return self.get_info()["ResponseData"]["FileId"]
+        if self.__command_id == 1 or self.__command_id == 2:
+            return self.__info["ResponseData"]["FileId"]
         return -1
 
     def get_file_size(self) -> int:
-        if self.get_info()["ResponseData"]["FileSize"]:
-            return self.get_info()["ResponseData"]["FileSize"]
+        if self.__info["ResponseData"]["FileSize"]:
+            return self.__info["ResponseData"]["FileSize"]
         return -1
 
     def get_file_token(self) -> str:
-        if self.command_id == 26 or self.command_id == 29:
-            return self.get_info()["ResponseData"]["FileToken"]
-        return -1
+        if self.__command_id == 26 or self.__command_id == 29:
+            return self.__info["ResponseData"]["FileToken"]
+        return ""
 
 
 # file = UpFile(
