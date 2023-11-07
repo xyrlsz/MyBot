@@ -126,3 +126,14 @@ class VoiceMessage:
 
     def get_body(self):
         return self.__body
+
+
+class NormalMessage:
+    def __init__(
+        self,
+        MsgBody: dict,
+    ):
+        self.__body = MsgBody
+
+    def get_body(self):
+        return self.__body

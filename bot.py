@@ -10,6 +10,8 @@ from Based.Config import get_config
 from Based.Message import TextMessage
 from Based.Message import ImageMessage
 from Based.Message import VoiceMessage
+from Based.Message import NormalMessage
+
 from Based.Send_Message import send_message
 from Based.ToUpload_File import UpFile
 
@@ -55,3 +57,22 @@ else:
 # # print(voice_file.get_file_size())
 # # print(voice_file.get_file_token())
 # send_message(voice_message)
+
+
+msg = {
+    "CgiCmd": "MessageSvc.PbSendMsg",
+    "CgiRequest": {
+        "ToUin": 2434221948,
+        "ToType": 1,
+        "Content": "你好",
+        "Images": [{"FileMd5": "ZMj7Nx8q9PojeVGcYETM3g==", "FileSize": 544988}],
+        # "Video": {
+        #     "FileMd5": "yyYmhuZChF7m3M486vG8jw==",
+        #     "FileSize": 1732142,
+        #     "Url": "30510201000436303402010002049117477c02037a1afd02042f2a56310204654a5a3a0410cb262686e642845ee6dcce3ceaf1bc8f02037a1db902010004140000000866696c65747970650000000431303031",
+        # },
+    },
+}
+send_message(NormalMessage(msg))
+
+# send_message(TextMessage(2434221948, 1, "你好"))
