@@ -15,6 +15,10 @@ import random
 import requests
 import websockets
 
+from Based.Event import Event
+from Based.Event import EventData
+
+
 # websocket client
 SERCIVE_HOST = "127.0.0.1:8086"
 
@@ -29,7 +33,17 @@ async def Wsdemo():
                 EventName = EventJson["CurrentPacket"]["EventName"]
                 EventData = EventJson["CurrentPacket"]["EventData"]
                 # print(f"<{EventName} {greeting}")
-                print(f"<{EventData} {greeting}")
+                # print(f"<{EventData} {greeting}")
+                if Event(EventJson).getEventData().Content() is not None:
+                    print(Event(EventJson).getEventData().Content())
+
+                # greeting = await websocket.recv()
+                # # print(f"<{greeting}")
+                # EventJson = json.loads(greeting)
+                # if "CurrentPacket" in EventJson:
+                #     EventName = EventJson["CurrentPacket"]["EventName"]
+                #     EventData = EventJson["CurrentPacket"]["EventData"]
+                #     print(Event(EventJson).getEventData().Content())
 
     except Exception as e:
         # 断线重连

@@ -1,6 +1,9 @@
+import json
+
+
 class EventData:
-    def __init__(self, EventJson: dict) -> None:
-        self.__body = EventJson
+    def __init__(self, EventData: dict) -> None:
+        self.__body = EventData
 
     def FromUin(self) -> int:
         return self.__body["MsgHead"]["FromUin"]
@@ -23,11 +26,10 @@ class EventData:
     def GroupName(self) -> str:
         return self.__body["MsgHead"]["GroupInfo"]["GroupName"]
 
-    def Content(self) -> str:
-        return self.__body["MsgBody"]["Content"]
-
-    def MsgBody(self) -> dict:
+    def MsgBody(self):
         return self.__body["MsgBody"]
 
-    def EventName(self) -> str:
-        return self.__body["EventName"]
+    def Content(self) -> str:
+        if self.MsgBody() is not None:
+            return self.MsgBody()["Content"]
+        return None
