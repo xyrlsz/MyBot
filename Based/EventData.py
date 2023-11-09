@@ -26,10 +26,12 @@ class EventData:
     def GroupName(self) -> str:
         return self.__body["MsgHead"]["GroupInfo"]["GroupName"]
 
-    def MsgBody(self):
-        return self.__body["MsgBody"]
+    def MsgBody(self) -> dict:
+        if self.__body["MsgBody"] is not None:
+            return dict(self.__body["MsgBody"])
+        return None
 
     def Content(self) -> str:
         if self.MsgBody() is not None:
-            return self.MsgBody()["Content"]
+            return self.__body["MsgBody"]["Content"]
         return None
