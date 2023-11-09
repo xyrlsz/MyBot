@@ -11,7 +11,7 @@ from Based.Message import TextMessage
 from Based.Message import ImageMessage
 from Based.Message import VoiceMessage
 from Based.Message import NormalMessage
-
+from Based.Message import TextWithImageMessage
 from Based.Send_Message import send_message
 from Based.ToUpload_File import UpFile
 
@@ -59,20 +59,27 @@ else:
 # send_message(voice_message)
 
 
-msg = {
-    "CgiCmd": "MessageSvc.PbSendMsg",
-    "CgiRequest": {
-        "ToUin": 2434221948,
-        "ToType": 1,
-        "Content": "你好",
-        "Images": [{"FileMd5": "ZMj7Nx8q9PojeVGcYETM3g==", "FileSize": 544988}],
-        # "Video": {
-        #     "FileMd5": "yyYmhuZChF7m3M486vG8jw==",
-        #     "FileSize": 1732142,
-        #     "Url": "30510201000436303402010002049117477c02037a1afd02042f2a56310204654a5a3a0410cb262686e642845ee6dcce3ceaf1bc8f02037a1db902010004140000000866696c65747970650000000431303031",
-        # },
-    },
-}
-send_message(NormalMessage(msg))
+# msg = {
+#     "CgiCmd": "MessageSvc.PbSendMsg",
+#     "CgiRequest": {
+#         "ToUin": 2434221948,
+#         "ToType": 1,
+#         "Content": "你好",
+#         "Images": [{"FileMd5": "ZMj7Nx8q9PojeVGcYETM3g==", "FileSize": 544988}],
+#         # "Video": {
+#         #     "FileMd5": "yyYmhuZChF7m3M486vG8jw==",
+#         #     "FileSize": 1732142,
+#         #     "Url": "30510201000436303402010002049117477c02037a1afd02042f2a56310204654a5a3a0410cb262686e642845ee6dcce3ceaf1bc8f02037a1db902010004140000000866696c65747970650000000431303031",
+#         # },
+#     },
+# }
+# send_message(NormalMessage(msg))
 
 # send_message(TextMessage(2434221948, 1, "你好"))
+
+# img = UpFile(
+#     1,
+#     "FileUrl",
+#     f"https://ts1.cn.mm.bing.net/th/id/R-C.c5516c2de39e348abadf13bdc2e9de13?rik=GPQec4yVU2FTzg&riu=http%3a%2f%2fpic.bizhi360.com%2fbpic%2f16%2f1416.jpg&ehk=NS%2f9OBR0rFSeQ54WKF5UYxcSm1dzPs%2bXkREdo0DXFQ4%3d&risl=&pid=ImgRaw&r=0",
+# )
+# send_message(TextWithImageMessage(2434221948, 1, "你好", img.get_file_md5()))

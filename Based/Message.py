@@ -137,3 +137,60 @@ class NormalMessage:
 
     def get_body(self):
         return self.__body
+
+
+class TextWithImageMessage:
+    def __init__(
+        self,
+        receiver: int,
+        type: int,
+        message: str,
+        file_md5: str,
+        file_id: int = None,
+        Height: int = None,
+        Width: int = None,
+        file_size: int = None,
+        AtUinLists: dict = None,
+    ):
+        if type != 2:
+            self.__body = {
+                "CgiCmd": "MessageSvc.PbSendMsg",
+                "CgiRequest": {
+                    "ToUin": receiver,  # Replace 88888888 with the actual receiver
+                    "ToType": type,  # 2 for group; 3 for private chat
+                    "Content": message,
+                    "Images": [
+                        {
+                            "FileMd5": file_md5,
+                            "FileSize": file_size,
+                        }
+                    ],
+                },
+            }
+        else:
+            if file_id is None or Height is None or Width is None:
+                raise ValueError(
+                    "For type 2, file_id, Height, and Width must be provided."
+                )
+            self.__body = {
+                "CgiCmd": "MessageSvc.PbSendMsg",
+                "CgiRequest": {
+                    "ToUin": receiver,
+                    "ToType": 2,
+                    "Content": " " + message,
+                    "AtUinLists": [],
+                    "Images": [
+                        {
+                            "FileId": file_id,
+                            "FileMd5": file_md5,
+                            "FileSize": file_size,
+                            "Height": Height,
+                            "Width": Width,
+                        }
+                    ],
+                },
+            }
+            self.__body["CgiRequest"]["AtUinLists"].extend(AtUinLists)
+
+    def get_body(self):
+        return self.__body
