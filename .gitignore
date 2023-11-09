@@ -165,7 +165,7 @@ Logs/
 test/
 UsersConf/*
 QR.png 
-y2232*
 hh.sh
-OPOBot*
+OPOBot
 __pycache__/
+Config\config.yaml
