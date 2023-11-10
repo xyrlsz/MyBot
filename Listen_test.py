@@ -21,9 +21,6 @@ from Based.Event import Event
 # websocket client
 SERCIVE_HOST = "127.0.0.1:8086"
 
-# 创建一个异步队列
-queue = asyncio.Queue()
-
 
 async def Wsdemo():
     uri = "ws://{}/ws".format(SERCIVE_HOST)
@@ -34,9 +31,10 @@ async def Wsdemo():
                 EventJson = json.loads(greeting)
                 EventName = EventJson["CurrentPacket"]["EventName"]
                 EventData = EventJson["CurrentPacket"]["EventData"]
-                Message = Event(EventJson)
-                # 把Message对象放入队列
-                await queue.put(Message)
+
+                print(f"<{EventData}+\n")
+                if Event(EventJson).getEventData().Content() is not None:
+                    print(Event(EventJson).getEventData().Content() + "\n")
 
     except Exception as e:
         # 断线重连
@@ -46,28 +44,4 @@ async def Wsdemo():
         await Wsdemo()
 
 
-def Todo(message):
-    if message.getEventData().MsgBody() is not None:
-        print(message.getEventData().MsgBody())
-
-
-async def process_message():
-    # 从队列里取出Message对象并处理
-    while True:
-        message = await queue.get()
-        # do something with message
-        # print(message.getEventData().Content())
-        Todo(message)
-        queue.task_done()
-
-
-# 创建一个事件循环
-loop = asyncio.get_event_loop()
-
-# 把两个异步函数添加到事件循环
-tasks = asyncio.gather(Wsdemo(), process_message())
-
-# 运行
-loop.run_until_complete(tasks)
-
-# asyncio.get_event_loop().run_until_complete(Wsdemo())
+asyncio.get_event_loop().run_until_complete(Wsdemo())

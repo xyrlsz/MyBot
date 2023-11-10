@@ -194,3 +194,24 @@ class TextWithImageMessage:
 
     def get_body(self):
         return self.__body
+
+
+class CardMessage:
+    def __init__(
+        self,
+        receiver: int,
+        type: int,
+        Content: str,
+    ):
+        self.__body = {
+            "CgiCmd": "MessageSvc.PbSendMsg",
+            "CgiRequest": {
+                "ToUin": receiver,
+                "ToType": type,
+                "SubMsgType": 51,
+                "Content": Content,
+            },
+        }
+
+    def get_body(self):
+        return self.__body

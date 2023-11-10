@@ -12,6 +12,7 @@ from Based.Message import ImageMessage
 from Based.Message import VoiceMessage
 from Based.Message import NormalMessage
 from Based.Message import TextWithImageMessage
+from Based.Message import CardMessage
 from Based.Send_Message import send_message
 from Based.ToUpload_File import UpFile
 
@@ -83,3 +84,46 @@ else:
 #     f"https://ts1.cn.mm.bing.net/th/id/R-C.c5516c2de39e348abadf13bdc2e9de13?rik=GPQec4yVU2FTzg&riu=http%3a%2f%2fpic.bizhi360.com%2fbpic%2f16%2f1416.jpg&ehk=NS%2f9OBR0rFSeQ54WKF5UYxcSm1dzPs%2bXkREdo0DXFQ4%3d&risl=&pid=ImgRaw&r=0",
 # )
 # send_message(TextWithImageMessage(2434221948, 1, "你好", img.get_file_md5()))
+
+
+# card = {
+#     "app": "com.tencent.structmsg",
+#     "config": {
+#         "ctime": 1699495141,
+#         "forward": 1,
+#         "token": "07708301a3f6616a96d3658d0a2a9043",
+#         "type": "normal",
+#     },
+#     "desc": "音乐",
+#     "extra": {
+#         "app_type": 1,
+#         "appid": 100495085,
+#         "msg_seq": 11404322491231877251,
+#         "uin": 3466484185,
+#     },
+#     "meta": {
+#         "music": {
+#             "action": "",
+#             "android_pkg_name": "",
+#             "app_type": 1,
+#             "appid": 100495085,
+#             "ctime": 1699495141,
+#             "desc": "TimeZ",
+#             "jumpUrl": "https://music.163.com/song/?id=26136982",
+#             "musicUrl": "https://music.163.com/song/media/outer/url?id=26136982",
+#             "preview": "http://p1.music.126.net/eHDlGwuBmiL7Kt45dWfxWQ==/2399134371831535.jpg",
+#             "sourceMsgId": "0",
+#             "source_icon": "https://i.gtimg.cn/open/app_icon/00/49/50/85/100495085_100_m.png",
+#             "source_url": "",
+#             "tag": "网易云音乐",
+#             "title": "偶像万万岁",
+#             "uin": 3466484185,
+#         }
+#     },
+#     "prompt": "[分享]偶像万万岁",
+#     "ver": "0.0.0.1",
+#     "view": "music",
+# }
+# card_str = json.dumps(card)
+
+# send_message(CardMessage(2434221948, 1, card_str))
