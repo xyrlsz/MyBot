@@ -16,13 +16,41 @@ import requests
 import websockets
 
 from Based.Event import Event
+import requests
+import base64
+from PIL import Image
+from io import BytesIO
+import requests
+import json
+from Based.Stauts import get_Status
+from Based.Login import login_QQ
+from Based.Config import get_config
+from Based.Message import TextMessage
+from Based.Message import ImageMessage
+from Based.Message import VoiceMessage
+from Based.Message import NormalMessage
+from Based.Message import TextWithImageMessage
+from Based.Message import CardMessage
+from Based.Send_Message import send_message
+from Based.ToUpload_File import UpFile
+
+config = "Config/config.yaml"
+get_config = get_config(config)
+
+if get_Status(get_config):
+    print("已登录")
+else:
+    print("未登录")
+    login_QQ(get_config)
 
 
 # websocket client
-SERCIVE_HOST = "127.0.0.1:8086"
+SERCIVE_HOST = Host
 
 # 创建一个异步队列
 queue = asyncio.Queue()
+
+receive_forbidden_list = list(get_config["receive_forbidden"])
 
 
 async def Wsdemo():
@@ -36,8 +64,10 @@ async def Wsdemo():
                 EventData = EventJson["CurrentPacket"]["EventData"]
                 Message = Event(EventJson)
                 # 把Message对象放入队列
-                await queue.put(Message)
-
+                if int(Message.getEventData().FromUin()) not in receive_forbidden_list:
+                    await queue.put(Message)
+                else:
+                    print("已过滤" + str(Message.getEventData().FromUin()) + "消息")
     except Exception as e:
         # 断线重连
         t = random.randint(5, 8)

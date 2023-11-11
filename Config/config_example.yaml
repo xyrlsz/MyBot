@@ -3,3 +3,9 @@ Host : "127.0.0.1:8086"
 QQBotUid : "123456789"
 devicename : "李三喵🐱"
 json : "1"
+
+receive_forbidden :
+  - 123456789
+
+send_forbidden :
+  - 123456789
