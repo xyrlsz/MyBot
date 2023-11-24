@@ -1,6 +1,8 @@
 import requests
 import json
 from Based.Config import get_config
+from Based.Activity import Remove_Msg, Ban_Member, Remove_Member
+from Based.Event import Event
 
 config = "Config/config.yaml"
 config_data = get_config(config)  # Renamed the variable to avoid conflict
@@ -14,8 +16,6 @@ import json
 import random
 import requests
 import websockets
-
-from Based.Event import Event
 
 
 # websocket client
@@ -46,9 +46,15 @@ async def Wsdemo():
         await Wsdemo()
 
 
-def Todo(message):
+def Todo(message: Event):
     if message.getEventData().MsgBody() is not None:
         print(message.getEventData().MsgBody())
+    if message.getEventData().Content() == "666":
+        Remove_Msg(message)
+        # Ban_Member(message.getEventData().FromUin(), message.getEventData().SenderUid())
+        # Remove_Member(
+        #     message.getEventData().FromUin(), message.getEventData().SenderUid()
+        # )
 
 
 async def process_message():
