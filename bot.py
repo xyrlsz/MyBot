@@ -15,6 +15,7 @@ from Based.Message import TextWithImageMessage
 from Based.Message import CardMessage
 from Based.Send_Message import send_message
 from Based.ToUpload_File import UpFile
+from Based.Activity import Remove_Msg, Exit_Group
 
 config = "Config/config.yaml"
 get_config = get_config(config)
@@ -25,14 +26,13 @@ else:
     print("未登录")
     login_QQ(get_config)
 
-
 # new_dict_array = [
 #     {"Nick": "XYR⊙LSZ ", "Uin": 2434221948},
 # ]
 
 # message = TextMessage(797649367, 2, "shabi", new_dict_array)
-message = TextMessage(2434221948, 2, "shabi")
-send_message(message)
+# message = TextMessage(2434221948, 2, "shabi")
+# send_message(message)
 # img_file = UpFile(2, "FilePath", "QR.png")
 # img_message = ImageMessage(
 #     797649367,
